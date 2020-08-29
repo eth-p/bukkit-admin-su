@@ -40,8 +40,8 @@ public class AdminsuCommand implements CommandExecutor {
 		this.subcommands.put("check", SUBCOMMAND_CHECK);
 		this.subcommands.put("disable", SUBCOMMAND_DISABLE);
 		this.subcommands.put("off", SUBCOMMAND_DISABLE);
-		this.subcommands.put("enable", SUBCOMMAND_DISABLE);
-		this.subcommands.put("on", SUBCOMMAND_DISABLE);
+		this.subcommands.put("enable", SUBCOMMAND_ENABLE);
+		this.subcommands.put("on", SUBCOMMAND_ENABLE);
 		this.subcommands.put("toggle", SUBCOMMAND_TOGGLE);
 	}
 
