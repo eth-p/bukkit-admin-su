@@ -67,6 +67,6 @@ By default, ops will *not* have permission to `/su toggle`.
 
 |Placeholder|Values|Description|
 |:--|:--|:--|
-|`%adminsu_enabled%|`true`/`false`|Whether or not the player is in admin mode.|
-|`%adminsu_capable%|`true`/`false`|Whether or not the player has perms for admin mode.|
-|`%adminsu_text%|(CUSTOMIZABLE)|The player's current admin mode text.|
+|`%adminsu_enabled%`|`true`/`false`|Whether or not the player is in admin mode.|
+|`%adminsu_capable%`|`true`/`false`|Whether or not the player has perms for admin mode.|
+|`%adminsu_text%`|(CUSTOMIZABLE)|The player's current admin mode text.|
