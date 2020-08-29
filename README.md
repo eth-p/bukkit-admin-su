@@ -5,6 +5,8 @@ This plugin is great for when you want to play on your survival server without c
 
 ## Requirements
 
+- Java: 8+
+- Bukkit: 1.14+
 - LuckPerms is highly recommended.
 
 ## Features
@@ -50,6 +52,9 @@ Checks the current admin status of another player.
 Reloads the localization messages.
 
 ## Permissions
+
+Permissions need to be explicitly given to players through LuckPerms.  
+By default, ops will *not* have permission to `/su toggle`.
 
 |Permission|Description|
 |:--|:--|
