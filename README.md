@@ -1,4 +1,4 @@
-# admin-si
+# admin-su
 
 A zero-configuration plugin for toggling admin permissions (like cheats).
 This plugin is great for when you want to play on your survival server without cheats.
