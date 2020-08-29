@@ -1,4 +1,4 @@
-package com.example;
+package dev.ethp.adminsu.bukkit;
 
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.command.Command;

@@ -1,10 +1,10 @@
-package com.example;
+package dev.ethp.adminsu.bukkit;
 
 import net.milkbowl.vault.permission.Permission;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class BukkitPlugin extends JavaPlugin {
+public class Plugin extends JavaPlugin {
 
 	@Override
 	public void onEnable() {

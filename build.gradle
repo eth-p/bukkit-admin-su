@@ -1,14 +1,15 @@
 plugins {
     id 'java'
-    id 'dev.ethp.bukkit' version '0.1.4'
+    id 'dev.ethp.bukkit' version '0.1.7'
 }
 
 dependencies {
     bukkitApi()
     vaultApi()
+    compileOnly 'net.luckperms:api:5.0'
 }
 
-group 'com.example.bukkit'
+group 'dev.ethp.adminsu.bukkit'
 version = '1.0'
 
 sourceCompatibility = '1.8'
@@ -16,26 +17,28 @@ targetCompatibility = '1.8'
 
 bukkit {
     name rootProject.name
-    main 'com.example.BukkitPlugin'
+    main 'dev.ethp.adminsu.bukkit.Plugin'
 
-    description 'A plugin that says hello.'
+    description 'Toggle admin mode with /su'
 
-    author 'your name'
+    author 'eth-p'
 
     api {
         version '1.14.4'
     }
 
-    command 'hello', {
-        permission 'hello.command'
-        description 'Says hello!'
-        usage 'Usage: /hello'
+    command 'adminsu', {
+        permission 'adminsu'
+        description 'Toggle admin mode.'
+        usage 'Usage: /adminsu'
+        alias 'su'
     }
 
-    permission 'hello.command', {
-        description 'Gives access to /hello'
-        allow ALL
+    permission 'adminsu', {
+        description 'Gives access to /adminsu'
+        allow NONE
     }
 
-    dependency 'Vault'
+    dependency 'LuckPerms', OPTIONAL
+    dependency 'PlaceholderAPI', OPTIONAL
 }
