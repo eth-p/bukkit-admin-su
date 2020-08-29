@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 import dev.ethp.adminsu.bukkit.hook.SuLuckperms;
+import dev.ethp.adminsu.bukkit.hook.SuPlaceholder;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Plugin extends JavaPlugin {
@@ -32,6 +33,7 @@ public class Plugin extends JavaPlugin {
 		
 		// Hooks.
 		hooks.add(luckperms = new Hook(this, "LuckPerms", SuLuckperms::new));
+		hooks.add(new Hook(this, "PlaceholderAPI", SuPlaceholder::new));
 		
 		// Enable hooks.
 		for (Hook hook : hooks) {

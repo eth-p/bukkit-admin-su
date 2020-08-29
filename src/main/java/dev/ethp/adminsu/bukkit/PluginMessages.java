@@ -21,8 +21,11 @@ public class PluginMessages {
 	public final Message COMMAND_ABOUT_WARNING_OPMODE;
 	public final Message SU_ENABLED;
 	public final Message SU_ENABLED_BROADCAST;
+	public final Message SU_ENABLED_PLACEHOLDER;
 	public final Message SU_DISABLED;
 	public final Message SU_DISABLED_BROADCAST;
+	public final Message SU_DISABLED_PLACEHOLDER;
+	public final Message SU_IMPOSSIBLE_PLACEHOLDER;
 	public final Message ADMINSU_CHECK_ENABLED;
 	public final Message ADMINSU_CHECK_DISABLED;
 	public final Message ADMINSU_CHECK_IMPOSSIBLE;
@@ -52,6 +55,9 @@ public class PluginMessages {
 		SU_DISABLED = messages.get("su.disabled").prepend(PREFIX);
 		SU_ENABLED_BROADCAST = messages.get("su.enabled_broadcast").prepend(PREFIX);
 		SU_DISABLED_BROADCAST = messages.get("su.disabled_broadcast").prepend(PREFIX);
+		SU_ENABLED_PLACEHOLDER = messages.get("placeholder.enabled");
+		SU_DISABLED_PLACEHOLDER = messages.get("placeholder.disabled");
+		SU_IMPOSSIBLE_PLACEHOLDER = messages.get("placeholder.impossible");
 	}
 
 }

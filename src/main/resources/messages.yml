@@ -36,4 +36,5 @@ command:
 placeholder:
     enabled: "Enabled"
     disabled: "Disabled"
+    impossible: ""
     

@@ -16,6 +16,7 @@ This allows for highly flexible configurations that don't differentiate between 
 If an unsupported permissions plugin is being used (anything that isn't LuckPerms), this plugin will instead toggle the player's `/op` status on and off.
 
 **Other features:**
+- PlaceholderAPI support.
 - Completely configurable messages.yml file.
 
 ## Commands
@@ -56,3 +57,11 @@ Reloads the localization messages.
 |`adminsu.check`|Gives access to `/su check <player>`.|  
 |`adminsu.check.broadcast`|Receive a message whenever another player enters admin mode. Type `/su` to get a response back.|
 |`adminsu.reload`|Gives access to `/su reload`|
+
+## Placeholders
+
+|Placeholder|Values|Description|
+|:--|:--|:--|
+|`%adminsu_enabled%|`true`/`false`|Whether or not the player is in admin mode.|
+|`%adminsu_capable%|`true`/`false`|Whether or not the player has perms for admin mode.|
+|`%adminsu_text%|(CUSTOMIZABLE)|The player's current admin mode text.|
