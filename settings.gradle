@@ -1,1 +1,3 @@
 rootProject.name = 'admin-su'
+
+include 'platform-bukkit'

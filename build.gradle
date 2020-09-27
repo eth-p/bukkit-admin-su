@@ -1,58 +1,55 @@
 plugins {
-    id 'java'
-    id 'dev.ethp.bukkit' version '0.1.9'
+	id 'co.uzzu.dotenv.gradle' version '1.1.0'
 }
 
-dependencies {
-    bukkitApi()
-    placeholderApi()
-    compileOnly 'net.luckperms:api:5.0'
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Packaging:
+// ---------------------------------------------------------------------------------------------------------------------
+
+def platformJarTasks = []
+def platformApiTasks = []
+def platformBuildLibs = []
+
+subprojects.each { subproject ->
+	if (subproject.name.startsWith('platform-')) {
+		platformJarTasks.add("${subproject.path}:jar")
+		platformApiTasks.add("${subproject.path}:api")
+		platformBuildLibs.add(file("${subproject.buildDir}/libs"))
+	}
 }
 
-group 'dev.ethp.adminsu.bukkit'
-version = '1.1.1'
 
-sourceCompatibility = '1.8'
-targetCompatibility = '1.8'
+// ---------------------------------------------------------------------------------------------------------------------
+// Packaging: Copy
+// ---------------------------------------------------------------------------------------------------------------------
 
-bukkit {
-    name rootProject.name
-    main 'dev.ethp.adminsu.bukkit.Plugin'
+task jar(type: Copy) {
+	dependsOn platformJarTasks
+	platformBuildLibs.each {
+		from it
+	}
+	
+	into new File(buildDir, 'libs')
+	include "**/${rootProject.name}-*.jar"
+}
 
-    description 'Toggle admin mode with /su'
+task api(type: Copy) {
+	dependsOn platformJarTasks
+	platformBuildLibs.each {
+		from it
+	}
 
-    author 'eth-p'
+	into new File(buildDir, 'libs')
+	include "**/api-*.jar"
+}
 
-    api {
-        version '1.14.4'
-    }
 
-    command 'adminsu', {
-        description 'The adminsu command.'
-//        usage 'Usage: /adminsu'
-        alias 'su'
-    }
+// ---------------------------------------------------------------------------------------------------------------------
+// Build
+// ---------------------------------------------------------------------------------------------------------------------
 
-    permission 'adminsu.toggle', {
-        description 'Gives access to /adminsu toggle'
-        deny ALL
-    }
-
-    permission 'adminsu.reload', {
-        description 'Gives access to /adminsu reload'
-        deny ALL
-    }
-
-    permission 'adminsu.check', {
-        description 'Allows the player to check another players admin mode status'
-        deny ALL
-    }
-    
-    permission 'adminsu.check.broadcast', {
-        description 'Allows the player to see when another player uses /adminsu'
-        deny ALL
-    }
-
-    dependency 'LuckPerms', OPTIONAL
-    dependency 'PlaceholderAPI', OPTIONAL
+task build {
+	dependsOn api
+	dependsOn jar
 }

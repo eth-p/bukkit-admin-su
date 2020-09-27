@@ -1,0 +1,8 @@
+ext.meta = [:]
+
+ext.meta.name      = 'admin-su'
+ext.meta.group     = 'dev.ethp.adminsu'
+ext.meta.version   = '1.1.1'
+
+ext.meta.minecraft = '1.14.4'
+ext.meta.java      = '1.8'

@@ -1,13 +1,9 @@
 package dev.ethp.adminsu.bukkit.command;
 
-import java.util.function.Function;
-
 import dev.ethp.adminsu.bukkit.Plugin;
-import dev.ethp.adminsu.bukkit.Su;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import static dev.ethp.adminsu.bukkit.PluginPermissions.PERMISSION_SU_TOGGLE;
 import static dev.ethp.adminsu.bukkit.PluginUtil.expectPermission;
 import static dev.ethp.adminsu.bukkit.PluginUtil.expectPlayer;

@@ -9,14 +9,14 @@ import org.bukkit.metadata.MetadataValue;
  * 
  * This allows plugins to enable, disable, or check if the user is in admin mode.
  * If you simply wish to check for admin mode, you can use the Bukkit metadata "su" key:
- * 
- * <code><pre>
+ *
+ * <pre><code>
  *     Player player = ...;
  *     for (MetadataValue meta : player.getMetadata("su")) {
  *         return meta.asBoolean();
  *     }
  *     return false;
- * </pre></code>
+ * </code></pre>
  */
 public class Su {
 

@@ -1,0 +1,7 @@
+group = meta.group
+version = meta.version
+
+if (project.hasProperty("sourceCompatibility")) {
+	sourceCompatibility = meta.java
+	targetCompatibility = meta.java
+}

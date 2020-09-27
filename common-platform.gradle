@@ -1,0 +1,105 @@
+// ---------------------------------------------------------------------------------------------------------------------
+// API: Sources
+// ---------------------------------------------------------------------------------------------------------------------
+sourceSets {
+	api {
+		java {
+			compileClasspath += configurations.compileClasspath
+		}
+	}
+	main {
+		java {
+			runtimeClasspath += api.output
+		}
+	}
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// API: Javadocs
+// ---------------------------------------------------------------------------------------------------------------------
+javadoc {
+	classpath = sourceSets.api.compileClasspath
+	source = sourceSets.api.allJava
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// API: Packaging
+// ---------------------------------------------------------------------------------------------------------------------
+def platform = project.name.startsWith("platform-") ? project.name.substring(9) : project.name
+
+task apiJar(type: Jar) {
+	from sourceSets.api.output
+	
+	archiveBaseName = "api-${platform}"
+	archiveClassifier = null
+}
+
+task apiJavadocJar(type: Jar) {
+	from javadoc
+
+	archiveBaseName = "api-${platform}"
+	archiveClassifier = 'javadoc'
+}
+
+task apiSourcesJar(type: Jar) {
+	from sourceSets.api.allJava
+	from sourceSets.main.allJava
+
+	archiveBaseName = "api-${platform}"
+	archiveClassifier = 'sources'
+}
+
+task api {
+	dependsOn 'apiJar'
+	dependsOn 'apiJavadocJar'
+	dependsOn 'apiSourcesJar'
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Platform: Packaging
+// ---------------------------------------------------------------------------------------------------------------------
+
+jar {
+	archiveBaseName = "${rootProject.name}-${platform}"
+
+	from sourceSets.api.output
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// API: Publishing
+// ---------------------------------------------------------------------------------------------------------------------
+
+publishing {
+
+	publications {
+		maven(MavenPublication) { publication ->
+			publication.artifacts = [apiJar, apiSourcesJar, apiJavadocJar]
+			groupId = meta.group
+			artifactId = platform
+		}
+	}
+
+	repositories {
+		mavenLocal()
+		if (env.isPresent('PUBLISH_MAVEN_REPO')) {
+			maven {
+				url = env.PUBLISH_MAVEN_REPO.value
+				credentials {
+					username env.PUBLISH_MAVEN_USERNAME.value
+					password env.PUBLISH_MAVEN_PASSWORD.value
+					authentication {
+						basic(BasicAuthentication)
+					}
+				}
+			}
+		}
+	}
+}
+
+tasks.withType(PublishToMavenRepository) { task ->
+	dependsOn 'api'
+}
