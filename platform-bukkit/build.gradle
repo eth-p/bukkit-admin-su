@@ -1,8 +1,9 @@
 plugins {
-    id 'java'
+    id 'java-library'
     id 'maven-publish'
     
-    id 'dev.ethp.bukkit' version '0.2.4'
+    id 'dev.ethp.bukkit' version '0.2.5'
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
 }
 
 apply from: '../config.gradle'
@@ -10,16 +11,17 @@ apply from: '../common.gradle'
 apply from: '../common-platform.gradle'
 
 dependencies {
-    spigotApi()
+    paperApi()
     placeholderApi()
     compileOnly 'net.luckperms:api:5.0'
 }
 
 bukkit {
     name rootProject.name
-    main 'dev.ethp.adminsu.bukkit.Plugin'
+    main 'dev.ethp.adminsu.bukkit.PluginMain'
 
     description 'Toggle admin mode with /su'
+    website 'https://github.com/eth-p/bukkit-admin-su'
 
     author 'eth-p'
 
@@ -32,22 +34,22 @@ bukkit {
         alias 'su'
     }
 
-    permission 'adminsu.toggle', {
+    permission 'adminsu.command.toggle', {
         description 'Gives access to /adminsu toggle'
         deny ALL
     }
 
-    permission 'adminsu.reload', {
+    permission 'adminsu.command.reload', {
         description 'Gives access to /adminsu reload'
         deny ALL
     }
 
-    permission 'adminsu.check', {
+    permission 'adminsu.command.check', {
         description 'Allows the player to check another players admin mode status'
         deny ALL
     }
     
-    permission 'adminsu.check.broadcast', {
+    permission 'adminsu.spy', {
         description 'Allows the player to see when another player uses /adminsu'
         deny ALL
     }

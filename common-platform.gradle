@@ -1,4 +1,14 @@
 // ---------------------------------------------------------------------------------------------------------------------
+// Dependencies
+// ---------------------------------------------------------------------------------------------------------------------
+dependencies {
+	api project(':common').sourceSets.api.output
+	
+	implementation project(':common')
+	implementation project(':common').sourceSets.base.output
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
 // API: Sources
 // ---------------------------------------------------------------------------------------------------------------------
 sourceSets {
@@ -9,6 +19,9 @@ sourceSets {
 	}
 	main {
 		java {
+			srcDir 'src/main-impl/java'
+			
+			compileClasspath += api.output
 			runtimeClasspath += api.output
 		}
 	}
@@ -20,7 +33,7 @@ sourceSets {
 // ---------------------------------------------------------------------------------------------------------------------
 javadoc {
 	classpath = sourceSets.api.compileClasspath
-	source = sourceSets.api.allJava
+	source = sourceSets.api.allJava + project(':common').sourceSets.api.allJava
 }
 
 
@@ -31,6 +44,7 @@ def platform = project.name.startsWith("platform-") ? project.name.substring(9) 
 
 task apiJar(type: Jar) {
 	from sourceSets.api.output
+	from project(':common').sourceSets.api.output
 	
 	archiveBaseName = "api-${platform}"
 	archiveClassifier = null
@@ -44,8 +58,8 @@ task apiJavadocJar(type: Jar) {
 }
 
 task apiSourcesJar(type: Jar) {
+	from project(':common').sourceSets.api.allJava
 	from sourceSets.api.allJava
-	from sourceSets.main.allJava
 
 	archiveBaseName = "api-${platform}"
 	archiveClassifier = 'sources'
@@ -62,11 +76,26 @@ task api {
 // Platform: Packaging
 // ---------------------------------------------------------------------------------------------------------------------
 
-jar {
-	archiveBaseName = "${rootProject.name}-${platform}"
+jar.enabled = false
 
+shadowJar {
+	dependsOn generateBukkitManifest
+	
+	archiveBaseName = "${rootProject.name}-${platform}"
+	archiveClassifier = null
+
+	from generateBukkitManifest.output
+	
 	from sourceSets.api.output
+	from sourceSets.main.resources
+	from project(':common').sourceSets.main.output
+	
+	relocate 'dev.ethp.adminsu.base', 'dev.ethp.adminsu._internal.base'
+	relocate 'dev.ethp.adminsu.common', 'dev.ethp.adminsu._internal.impl.common'
+	relocate 'dev.ethp.adminsu.bukkit.impl', 'dev.ethp.adminsu._internal.impl.bukkit'
 }
+
+build.dependsOn 'shadowJar'
 
 
 // ---------------------------------------------------------------------------------------------------------------------

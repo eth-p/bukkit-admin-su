@@ -1,0 +1,45 @@
+plugins {
+    id 'java-library'
+}
+
+apply from: '../config.gradle'
+apply from: '../common.gradle'
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Source Sets
+// ---------------------------------------------------------------------------------------------------------------------
+sourceSets {
+    // API code included in the API jars.
+    create('api') {
+        java {
+            compileClasspath += configurations.compileClasspath
+        }
+    }
+
+    // Platform abstraction code.
+    base {
+        java {
+            compileClasspath += configurations.compileClasspath
+            compileClasspath += sourceSets.api.output
+        }
+    }
+
+    // Platform-agnostic implementation code.
+    main {
+        java {
+            compileClasspath += configurations.compileClasspath
+            compileClasspath += sourceSets.api.output
+            compileClasspath += sourceSets.base.output
+            
+            runtimeClasspath += api.output
+            runtimeClasspath += base.output
+        }
+    }
+    
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// Packaging
+// ---------------------------------------------------------------------------------------------------------------------
+jar.enabled = false

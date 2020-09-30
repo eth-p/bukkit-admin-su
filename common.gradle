@@ -2,6 +2,14 @@ group = meta.group
 version = meta.version
 
 if (project.hasProperty("sourceCompatibility")) {
+	repositories {
+		mavenCentral()
+	}
+	
+	dependencies {
+		compileOnly 'org.jetbrains:annotations:16.0.2'
+	}
+	
 	sourceCompatibility = meta.java
 	targetCompatibility = meta.java
 }

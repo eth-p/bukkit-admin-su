@@ -13,7 +13,7 @@ def platformBuildLibs = []
 
 subprojects.each { subproject ->
 	if (subproject.name.startsWith('platform-')) {
-		platformJarTasks.add("${subproject.path}:jar")
+		platformJarTasks.add("${subproject.path}:shadowJar")
 		platformApiTasks.add("${subproject.path}:api")
 		platformBuildLibs.add(file("${subproject.buildDir}/libs"))
 	}
@@ -35,7 +35,7 @@ task jar(type: Copy) {
 }
 
 task api(type: Copy) {
-	dependsOn platformJarTasks
+	dependsOn platformApiTasks
 	platformBuildLibs.each {
 		from it
 	}
@@ -46,10 +46,20 @@ task api(type: Copy) {
 
 
 // ---------------------------------------------------------------------------------------------------------------------
+// Clean
+// ---------------------------------------------------------------------------------------------------------------------
+
+task clean {}
+clean.doFirst {
+	delete "$buildDir"
+}
+
+
+// ---------------------------------------------------------------------------------------------------------------------
 // Build
 // ---------------------------------------------------------------------------------------------------------------------
 
 task build {
-	dependsOn api
 	dependsOn jar
+	dependsOn api
 }

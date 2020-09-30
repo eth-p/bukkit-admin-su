@@ -58,10 +58,10 @@ By default, ops will *not* have permission to `/su toggle`.
 
 |Permission|Description|
 |:--|:--|
-|`adminsu.toggle`|Gives access to `/su toggle`, `/su on`, and `/su off`.|  
-|`adminsu.check`|Gives access to `/su check <player>`.|  
-|`adminsu.check.broadcast`|Receive a message whenever another player enters admin mode. Type `/su` to get a response back.|
-|`adminsu.reload`|Gives access to `/su reload`|
+|`adminsu.command.toggle`|Gives access to `/su toggle`, `/su on`, and `/su off`.|  
+|`adminsu.command.check`|Gives access to `/su check <player>`.|  
+|`adminsu.command.reload`|Gives access to `/su reload`|
+|`adminsu.spy`|Receive a message whenever another player enters admin mode. Type `/su` to get a response back.|
 
 ## Placeholders
 
@@ -69,4 +69,5 @@ By default, ops will *not* have permission to `/su toggle`.
 |:--|:--|:--|
 |`%adminsu_enabled%`|`true`/`false`|Whether or not the player is in admin mode.|
 |`%adminsu_capable%`|`true`/`false`|Whether or not the player has perms for admin mode.|
-|`%adminsu_text%`|(CUSTOMIZABLE)|The player's current admin mode text.|
+|`%adminsu_enabled_for%`|`dd:hh:mm:ss`|How long the player has been in admin mode for.|
+|`%adminsu_enabled_for_total_seconds%`|`dd:hh:mm:ss`|How long the player has been in admin mode for, in seconds.|

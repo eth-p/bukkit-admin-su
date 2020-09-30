@@ -1,0 +1,68 @@
+# ----------------------------------------------------------------------------------------------------------------------
+# ADMIN-SU LOCALIZATION MESSAGES
+# Translator: eth-p
+# ----------------------------------------------------------------------------------------------------------------------
+lang: 'en_US'
+prefix: "&c[SU]&r "
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Errors:
+# ----------------------------------------------------------------------------------------------------------------------
+error:
+    internal:                 '&cAn internal error has occurred. Check console for details.'
+    console:                  '&cError: &4Console is always an admin.'
+    permission:               '&cError: &4You do not have permission to do that.'
+    unknown-command:          '&cError: &4Unknown subcommand.'
+    player-not-found:         '&cError: &4No players matched the name "&c{query}&4".'
+    player-multiple-found:    '&cError: &4Multiple players matched the name "&c{query}&4".'
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Messages:
+# ----------------------------------------------------------------------------------------------------------------------
+su:
+    enabled:      '{prefix}&aYou are now in admin mode.'
+    enabled-spy:  '{prefix}&e{player}&6 is entering admin mode.'
+    disabled:     '{prefix}&aYou are no longer in admin mode.'
+    disabled-spy: '{prefix}&e{player}&6 is exiting admin mode.'
+
+
+# ----------------------------------------------------------------------------------------------------------------------
+# Commands:
+# ----------------------------------------------------------------------------------------------------------------------
+command.toggle:
+    usage: '&cUsage: &6/{command}'
+
+command.enable:
+    usage: '&cUsage: &6/{command}'
+
+command.disable:
+    usage: '&cUsage: &6/{command}'
+
+command.check:
+    usage:      '&cUsage: &6/{command} &e<&6player&e>'
+    enabled:    '{prefix}&e{player}&6 is currently in &aadmin&6 mode.'
+    disabled:   '{prefix}&e{player}&6 is currently in &cplayer&6 mode.'
+    impossible: '{prefix}&c{player} does not have permission to be in admin mode.'
+
+command.reload:
+    usage:   '&cUsage: &6/{command}'
+    success: '{prefix}&aReloaded admin-su successfully.'
+    error:   '{prefix}&cFailed to reload admin-su. Check console for errors.'
+
+command.about:
+    plugin-header:        '&6&l{name} &6v{version}'
+    usage:                '&cUsage: &6/{command}'
+    developers:           '&6Developer: &e{developers}'
+    developers-separator: '&6, &e'
+    website:              '&6Website: &e{website}'
+    feature-header:       '&6Features:'
+    feature-enabled:      '&e  {feature}'
+    feature-disabled:     '&e  {feature} &7(Disabled)'
+    feature-unsupported:  '&e  {feature} &7(Unsupported)'
+    warning-opmode:       |-
+        &c&lWARNING:
+        &c  A compatible permissions plugin was not found.
+        &c  Server op will be used instead.
+
